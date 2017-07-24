@@ -1,4 +1,4 @@
 import {combineReducers} from "redux";
-import App from "./app";
+import Hello from "./hello";
 
-export default combineReducers({App});
+export default combineReducers({Hello});

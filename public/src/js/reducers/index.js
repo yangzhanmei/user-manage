@@ -1,4 +1,4 @@
 import {combineReducers} from "redux";
-import Hello from "./hello";
+import ShowUsers from "./showUsers";
 
-export default combineReducers({Hello});
+export default combineReducers({ShowUsers});

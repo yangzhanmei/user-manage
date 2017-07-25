@@ -15131,6 +15131,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         },
         modifyUser: function modifyUser(id, user, name, age, sex, tel, email, tip) {
             dispatch({ type: "MODIFYUSER", id: id, user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
+        },
+        deleteUser: function deleteUser(id) {
+            dispatch({ type: "DELETEUSER", id: id });
         }
     };
 };
@@ -15188,6 +15191,14 @@ exports.default = function (store) {
                     tip: action.tip
                 }).end(function (err, res) {
                     next({ type: action.type, modifyResult: res.text });
+                });
+            }
+
+            if (action.type === "DELETEUSER") {
+                _superagent2.default.post("/deleteUser").send({
+                    id: action.id
+                }).end(function (err, res) {
+                    next({ type: action.type, deleteResult: res.text });
                 });
             } else {
                 next(action);
@@ -32400,6 +32411,26 @@ var ShowUsers = function (_React$Component) {
             }
         }
     }, {
+        key: "deleteUser",
+        value: function deleteUser(id) {
+            var ifDelete = confirm("确定删除?");
+            if (ifDelete) {
+                this.props.deleteUser(id);
+            }
+        }
+    }, {
+        key: "judgeDelete",
+        value: function judgeDelete() {
+            var deleteResult = this.props.users.deleteResult;
+            if (deleteResult === "success") {
+                window.location.href = '/';
+                alert("删除成功！");
+            }
+            if (deleteResult === "fail") {
+                alert("删除失败，请重新删除！");
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -32463,7 +32494,7 @@ var ShowUsers = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             "button",
-                            { className: "btn btn-danger" },
+                            { className: "btn btn-danger", onClick: _this2.deleteUser.bind(_this2, val.id) },
                             "\u5220\u9664"
                         )
                     )
@@ -32474,6 +32505,7 @@ var ShowUsers = function (_React$Component) {
                 "div",
                 null,
                 this.setTag(),
+                this.judgeDelete(),
                 _react2.default.createElement(
                     "div",
                     null,
@@ -32907,6 +32939,10 @@ exports.default = function () {
     if (action.type === "MODIFYUSER") {
 
         return Object.assign({}, state, { modifyResult: action.modifyResult });
+    }
+    if (action.type === "DELETEUSER") {
+
+        return Object.assign({}, state, { deleteResult: action.deleteResult });
     }
     return state;
 };

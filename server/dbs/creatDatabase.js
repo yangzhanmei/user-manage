@@ -7,7 +7,7 @@ function creatDatabase() {
             return err;
         }
         else {
-            console.log('create database sucess');
+            console.log('create database success');
         }
     });
 

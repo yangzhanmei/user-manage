@@ -48,8 +48,8 @@ export default class ShowUsers extends React.Component {
     }
 
     setTag() {
-        let addResult = this.props.users.addResult;
-        let modifyResult = this.props.users.modifyResult;
+        const addResult = this.props.users.addResult;
+        const modifyResult = this.props.users.modifyResult;
         if (this.tag) {
             if (addResult === "success") {
                 this.tag.innerHTML = "添加成功";
@@ -72,6 +72,24 @@ export default class ShowUsers extends React.Component {
         }
     }
 
+    deleteUser(id) {
+        const ifDelete = confirm("确定删除?");
+        if (ifDelete) {
+            this.props.deleteUser(id);
+        }
+    }
+
+    judgeDelete() {
+        const deleteResult = this.props.users.deleteResult;
+        if (deleteResult === "success") {
+            window.location.href = '/';
+            alert("删除成功！");
+        }
+        if (deleteResult === "fail") {
+            alert("删除失败，请重新删除！")
+        }
+    }
+
     render() {
         const userList = this.props.users.userList.map((val, index) => {
             return <tr key={index}>
@@ -89,13 +107,14 @@ export default class ShowUsers extends React.Component {
                     </button>
                 </td>
                 <td>
-                    <button className="btn btn-danger">删除</button>
+                    <button className="btn btn-danger" onClick={this.deleteUser.bind(this, val.id)}>删除</button>
                 </td>
             </tr>
         });
 
         return (<div>
             {this.setTag()}
+            {this.judgeDelete()}
             <div>
                 <table className="table table-bordered">
                     <thead>

@@ -40,6 +40,15 @@ export default store => next => action => {
             })
     }
 
+    if (action.type === "DELETEUSER") {
+        request.post("/deleteUser")
+            .send({
+                id: action.id
+            })
+            .end((err, res) => {
+                next({type: action.type, deleteResult: res.text});
+            })
+    }
     else {
         next(action);
     }

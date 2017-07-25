@@ -11,5 +11,9 @@ export default (state = {userList: []}, action) => {
 
         return Object.assign({}, state, {modifyResult: action.modifyResult});
     }
+    if (action.type === "DELETEUSER") {
+
+        return Object.assign({}, state, {deleteResult: action.deleteResult});
+    }
     return state;
 }

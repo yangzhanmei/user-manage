@@ -1,4 +1,5 @@
 import React from 'react';
+import "!style-loader!css-loader!./../../style/css/handleUsers.css";
 
 export default class ShowUsers extends React.Component {
     componentWillMount() {
@@ -117,15 +118,23 @@ export default class ShowUsers extends React.Component {
             </tr>
         });
 
-        return (<div>
+        return (<div id="contanier">
                 {this.setTag()}
                 {this.judgeDelete()}
-                <div>
-                    <div className="input-group input-group-sm">
-                        <input type="text" className="form-control" placeholder="请输入要查询的用户名称" ref="userName"/>
-                        <span className="input-group-addon">
+                <div id="header">
+                    <h3>人员管理</h3>
+                </div>
+                <div className="col-lg-12" id="searchAndAdd">
+                    <div className="col-lg-5">
+                        <div className="input-group input-group-sm">
+                            <input type="text" className="form-control" placeholder="请输入要查询的用户名称" ref="userName"/>
+                            <span className="input-group-addon">
                             <span className="glyphicon glyphicon-search" onClick={this.findUser.bind(this)}></span>
                         </span>
+                        </div>
+                    </div>
+                    <div className="col-lg-2 col-lg-offset-5">
+                        <button className="btn btn-info" data-toggle="modal" data-target="#addUserModal">增加用户</button>
                     </div>
                 </div>
                 <div>
@@ -148,7 +157,6 @@ export default class ShowUsers extends React.Component {
                         {userList}
                         </tbody>
                     </table>
-                    <button className="btn btn-info" data-toggle="modal" data-target="#addUserModal">增加用户</button>
                 </div>
                 <div className="modal fade bs-example-modal-lg" id="addUserModal" role="dialog" aria-hidden="true">
                     <div className="modal-dialog" role="document">
@@ -156,36 +164,36 @@ export default class ShowUsers extends React.Component {
                             <div className="modal-header">
                                 <h4 className="modal-title" id="myModalLabel">添加人员</h4>
                             </div>
-                            <div>
+                            <div className="modalInput">
                                 <div className="inputText">
-                                    <span>用户名</span>
+                                    <span className="inputSpan">用户</span>
                                     <input type="text" ref={(user) => this.user = user} placeholder="请输入用户名"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>姓名</span>
+                                    <span className="inputSpan">姓名</span>
                                     <input type="text" ref={(name) => this.name = name} placeholder="请输入姓名"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>年龄</span>
+                                    <span className="inputSpan">年龄</span>
                                     <input type="number" ref={(age) => this.age = age} placeholder="请输入年龄"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>性别</span>
-                                    <select ref={(sex) => this.sex = sex}>
+                                    <span className="inputSpan">性别</span>
+                                    <select ref={(sex) => this.sex = sex} className="select">
                                         <option>女</option>
                                         <option>男</option>
                                     </select>
                                 </div>
                                 <div className="inputText">
-                                    <span>电话</span>
+                                    <span className="inputSpan">电话</span>
                                     <input type="text" ref={(tel) => this.tel = tel} placeholder="请输入11位电话"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>邮箱</span>
+                                    <span className="inputSpan">邮箱</span>
                                     <input type="text" ref={(email) => this.email = email} placeholder="请输入邮箱"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>备注</span>
+                                    <span className="inputSpan">备注</span>
                                     <input type="text" ref={(tip) => this.tip = tip} placeholder="请输入备注"/>
                                 </div>
                                 <div ref={(tag) => this.tag = tag}></div>
@@ -206,40 +214,40 @@ export default class ShowUsers extends React.Component {
                             <div className="modal-header">
                                 <h4 className="modal-title" id="myModalLabel">修改人员信息</h4>
                             </div>
-                            <div>
+                            <div className="modalInput">
                                 <div className="inputText">
-                                    <span>序号</span>
+                                    <span className="inputSpan">序号</span>
                                     <input type="text" ref="id" readOnly="true"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>用户名</span>
+                                    <span className="inputSpan">用户</span>
                                     <input type="text" ref="user"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>姓名</span>
+                                    <span className="inputSpan">姓名</span>
                                     <input type="text" ref="name"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>年龄</span>
+                                    <span className="inputSpan">年龄</span>
                                     <input type="number" ref="age"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>性别</span>
-                                    <select ref="sex">
+                                    <span className="inputSpan">性别</span>
+                                    <select ref="sex" className="select">
                                         <option>女</option>
                                         <option>男</option>
                                     </select>
                                 </div>
                                 <div className="inputText">
-                                    <span>电话</span>
+                                    <span className="inputSpan">电话</span>
                                     <input type="text" ref="tel"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>邮箱</span>
+                                    <span className="inputSpan">邮箱</span>
                                     <input type="text" ref="email"/>
                                 </div>
                                 <div className="inputText">
-                                    <span>备注</span>
+                                    <span className="inputSpan">备注</span>
                                     <input type="text" ref="tip"/>
                                 </div>
                                 <div ref={(tag) => this.tag = tag}></div>

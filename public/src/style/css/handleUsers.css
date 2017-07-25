@@ -1,0 +1,38 @@
+#contanier {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 30px;
+}
+
+#header {
+    text-align: center;
+}
+
+#searchAndAdd {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.inputText {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.inputSpan {
+    margin-right: 20px;
+}
+
+.modalInput {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.select {
+    background-color: white;
+    height: 25px;
+    width: 155px;
+}

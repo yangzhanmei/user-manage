@@ -7,9 +7,15 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loaders: ['babel-loader?presets[]=es2015,presets[]=react']
-        }]
+        loaders: [
+            {test: /\.css$/, loader: "style!css"},
+            {
+                test: /\.jsx?$/,
+                loaders: ['babel-loader?presets[]=es2015,presets[]=react']
+            },
+            {
+                test: /\.(png|jpg|jpeg)$/,
+                loader: 'url-loader?limit=8192&name=images/[name].[ext]'
+            }]
     }
 };

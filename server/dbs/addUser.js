@@ -6,7 +6,7 @@ function addUser(req, res) {
 
     connection.query(select, function (err, rows) {
         if (err) {
-            res.end('新增失败：' + err);
+            res.end("fail");
         } else {
             res.send("success");
         }

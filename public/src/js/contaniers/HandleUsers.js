@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import ShowUsers from '../components/ShowUsers';
+import HandleUsers from '../components/HandleUsers';
 
 const mapStateToProps = (state) => {
-    return {users: state.ShowUsers};
+    return {users: state.HandleUsers};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(HandleUsers);

@@ -6,20 +6,20 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import App from './components/App';
 
-import ShowUsers from './contaniers/ShowUsers';
+import HandleUsers from './contaniers/HandleUsers';
 
 import reducer from './reducers/index';
 
-import showUsers from './middlewares/showUsers';
+import handleUsers from './middlewares/handleUsers';
 
-const middleware = applyMiddleware(showUsers);
+const middleware = applyMiddleware(handleUsers);
 const store = createStore(reducer, middleware);
 
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={ShowUsers}/>
+                <IndexRoute component={HandleUsers}/>
             </Route>
         </Router>
     </Provider>,

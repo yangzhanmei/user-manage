@@ -1,4 +1,4 @@
 import {combineReducers} from "redux";
-import ShowUsers from "./showUsers";
+import HandleUsers from "./handleUsers";
 
-export default combineReducers({ShowUsers});
+export default combineReducers({HandleUsers});

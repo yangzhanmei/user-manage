@@ -15099,87 +15099,8 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _reactRedux = __webpack_require__(75);
-
-var _ShowUsers = __webpack_require__(290);
-
-var _ShowUsers2 = _interopRequireDefault(_ShowUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-    return { users: state.ShowUsers };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        showUsers: function showUsers() {
-            dispatch({ type: "SHOWUSERS" });
-        },
-        addUser: function addUser(user, name, age, sex, tel, email, tip) {
-            dispatch({ type: "ADDUSER", user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
-        }
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ShowUsers2.default);
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _superagent = __webpack_require__(280);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (store) {
-    return function (next) {
-        return function (action) {
-            if (action.type === "SHOWUSERS") {
-                _superagent2.default.get('/getUsers').end(function (err, res) {
-                    next({ type: action.type, userList: res.body });
-                });
-            }
-
-            if (action.type === "ADDUSER") {
-                _superagent2.default.post("/addUser").send({
-                    user: action.user,
-                    name: action.name,
-                    age: action.age,
-                    sex: action.sex,
-                    tel: action.tel,
-                    email: action.email,
-                    tip: action.tip
-                }).end(function (err, res) {
-                    next({ type: action.type, addResult: res.text });
-                });
-            } else {
-                next(action);
-            }
-        };
-    };
-};
-
-/***/ }),
+/* 133 */,
+/* 134 */,
 /* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15192,13 +15113,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(45);
 
-var _showUsers = __webpack_require__(292);
+var _handleUsers = __webpack_require__(296);
 
-var _showUsers2 = _interopRequireDefault(_showUsers);
+var _handleUsers2 = _interopRequireDefault(_handleUsers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _redux.combineReducers)({ ShowUsers: _showUsers2.default });
+exports.default = (0, _redux.combineReducers)({ HandleUsers: _handleUsers2.default });
 
 /***/ }),
 /* 136 */
@@ -32275,7 +32196,146 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 290 */
+/* 290 */,
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(130);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRedux = __webpack_require__(75);
+
+var _redux = __webpack_require__(45);
+
+var _reactRouter = __webpack_require__(131);
+
+var _App = __webpack_require__(132);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _HandleUsers = __webpack_require__(293);
+
+var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
+
+var _index = __webpack_require__(135);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _handleUsers = __webpack_require__(294);
+
+var _handleUsers2 = _interopRequireDefault(_handleUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var middleware = (0, _redux.applyMiddleware)(_handleUsers2.default);
+var store = (0, _redux.createStore)(_index2.default, middleware);
+
+_reactDom2.default.render(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(
+        _reactRouter.Router,
+        { history: _reactRouter.hashHistory },
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: '/', component: _App2.default },
+            _react2.default.createElement(_reactRouter.IndexRoute, { component: _HandleUsers2.default })
+        )
+    )
+), document.getElementById('app'));
+
+/***/ }),
+/* 292 */,
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reactRedux = __webpack_require__(75);
+
+var _HandleUsers = __webpack_require__(295);
+
+var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+    return { users: state.HandleUsers };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        showUsers: function showUsers() {
+            dispatch({ type: "SHOWUSERS" });
+        },
+        addUser: function addUser(user, name, age, sex, tel, email, tip) {
+            dispatch({ type: "ADDUSER", user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_HandleUsers2.default);
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _superagent = __webpack_require__(280);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (store) {
+    return function (next) {
+        return function (action) {
+            if (action.type === "SHOWUSERS") {
+                _superagent2.default.get('/getUsers').end(function (err, res) {
+                    next({ type: action.type, userList: res.body });
+                });
+            }
+
+            if (action.type === "ADDUSER") {
+                _superagent2.default.post("/addUser").send({
+                    user: action.user,
+                    name: action.name,
+                    age: action.age,
+                    sex: action.sex,
+                    tel: action.tel,
+                    email: action.email,
+                    tip: action.tip
+                }).end(function (err, res) {
+                    next({ type: action.type, addResult: res.text });
+                });
+            } else {
+                next(action);
+            }
+        };
+    };
+};
+
+/***/ }),
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32638,63 +32698,7 @@ var ShowUsers = function (_React$Component) {
 exports.default = ShowUsers;
 
 /***/ }),
-/* 291 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(8);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(130);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRedux = __webpack_require__(75);
-
-var _redux = __webpack_require__(45);
-
-var _reactRouter = __webpack_require__(131);
-
-var _App = __webpack_require__(132);
-
-var _App2 = _interopRequireDefault(_App);
-
-var _ShowUsers = __webpack_require__(133);
-
-var _ShowUsers2 = _interopRequireDefault(_ShowUsers);
-
-var _index = __webpack_require__(135);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _showUsers = __webpack_require__(134);
-
-var _showUsers2 = _interopRequireDefault(_showUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var middleware = (0, _redux.applyMiddleware)(_showUsers2.default);
-var store = (0, _redux.createStore)(_index2.default, middleware);
-
-_reactDom2.default.render(_react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(
-        _reactRouter.Router,
-        { history: _reactRouter.hashHistory },
-        _react2.default.createElement(
-            _reactRouter.Route,
-            { path: '/', component: _App2.default },
-            _react2.default.createElement(_reactRouter.IndexRoute, { component: _ShowUsers2.default })
-        )
-    )
-), document.getElementById('app'));
-
-/***/ }),
-/* 292 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

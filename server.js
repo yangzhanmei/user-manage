@@ -3,6 +3,7 @@ const app = express();
 const getUsers = require('./server/routers/getUsers');
 const bodyParser = require('body-parser');
 const createDatabase = require('./server/dbs/creatDatabase');
+const addUser = require('./server/routers/addUser');
 
 createDatabase();
 
@@ -16,6 +17,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/', getUsers);
+app.use('/', addUser);
 
 app.listen(3000, () => {
     console.log('Server started.');

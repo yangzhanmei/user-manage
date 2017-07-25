@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 export default class ShowUsers extends React.Component {
     componentWillMount() {
@@ -35,6 +36,7 @@ export default class ShowUsers extends React.Component {
                 {userList}
                 </tbody>
             </table>
+            <Link to="/addUser">增加用户</Link>
         </div>)
     }
 }

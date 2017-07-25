@@ -32301,16 +32301,101 @@ var ShowUsers = function (_React$Component) {
         value: function render() {
             var userList = this.props.userList.map(function (val, index) {
                 return _react2.default.createElement(
-                    'div',
+                    'tr',
                     { key: index },
-                    val.name
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.user
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.name
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.age
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.sex
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.tel
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.email
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        val.tip
+                    )
                 );
             });
 
             return _react2.default.createElement(
                 'div',
                 null,
-                userList
+                _react2.default.createElement(
+                    'table',
+                    null,
+                    _react2.default.createElement(
+                        'thead',
+                        null,
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u7528\u6237\u540D'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u59D3\u540D'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u5E74\u9F84'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u6027\u522B'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u7535\u8BDD'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u7535\u5B50\u90AE\u4EF6'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                '\u5907\u6CE8'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tbody',
+                        null,
+                        userList
+                    )
+                )
             );
         }
     }]);

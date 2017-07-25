@@ -15118,7 +15118,7 @@ var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-    console.log(state);
+
     return { users: state.HandleUsers };
 };
 

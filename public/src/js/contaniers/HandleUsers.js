@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import HandleUsers from '../components/HandleUsers';
 
 const mapStateToProps = (state) => {
-    console.log(state);
+
     return {users: state.HandleUsers};
 };
 

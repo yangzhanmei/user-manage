@@ -6,6 +6,7 @@ const createDatabase = require('./server/dbs/creatDatabase');
 const addUser = require('./server/routers/addUser');
 const modifyUser = require('./server/routers/modifyUser');
 const deleteUser = require('./server/routers/deleteUser');
+const findUser = require('./server/routers/findUser');
 
 createDatabase();
 
@@ -22,6 +23,7 @@ app.use('/', getUsers);
 app.use('/', addUser);
 app.use('/', modifyUser);
 app.use('/', deleteUser);
+app.use('/', findUser);
 
 app.listen(3000, () => {
     console.log('Server started.');

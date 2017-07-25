@@ -49,6 +49,17 @@ export default store => next => action => {
                 next({type: action.type, deleteResult: res.text});
             })
     }
+
+    if (action.type === "FINDUSER") {
+        request.post("/findUser")
+            .send({
+                user: action.user
+            })
+            .end((err, res) => {
+                next({type: action.type, userList: res.body});
+            })
+    }
+
     else {
         next(action);
     }

@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import HandleUsers from '../components/HandleUsers';
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {users: state.HandleUsers};
 };
 
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteUser: (id) => {
             dispatch({type: "DELETEUSER", id});
+        },
+        findUser: (user) => {
+            dispatch({type: "FINDUSER", user});
         }
     }
 };

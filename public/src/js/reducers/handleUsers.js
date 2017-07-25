@@ -15,5 +15,9 @@ export default (state = {userList: []}, action) => {
 
         return Object.assign({}, state, {deleteResult: action.deleteResult});
     }
+    if (action.type === "FINDUSER") {
+
+        return Object.assign({}, state, {userList: action.userList});
+    }
     return state;
 }

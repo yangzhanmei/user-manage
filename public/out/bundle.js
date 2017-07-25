@@ -15118,6 +15118,7 @@ var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
+    console.log(state);
     return { users: state.HandleUsers };
 };
 
@@ -15134,6 +15135,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         },
         deleteUser: function deleteUser(id) {
             dispatch({ type: "DELETEUSER", id: id });
+        },
+        findUser: function findUser(user) {
+            dispatch({ type: "FINDUSER", user: user });
         }
     };
 };
@@ -15199,6 +15203,14 @@ exports.default = function (store) {
                     id: action.id
                 }).end(function (err, res) {
                     next({ type: action.type, deleteResult: res.text });
+                });
+            }
+
+            if (action.type === "FINDUSER") {
+                _superagent2.default.post("/findUser").send({
+                    user: action.user
+                }).end(function (err, res) {
+                    next({ type: action.type, userList: res.body });
                 });
             } else {
                 next(action);
@@ -32431,6 +32443,12 @@ var ShowUsers = function (_React$Component) {
             }
         }
     }, {
+        key: "findUser",
+        value: function findUser() {
+            var userName = this.refs.userName.value;
+            this.props.findUser(userName);
+        }
+    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -32506,6 +32524,20 @@ var ShowUsers = function (_React$Component) {
                 null,
                 this.setTag(),
                 this.judgeDelete(),
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement(
+                        "div",
+                        { className: "input-group input-group-sm" },
+                        _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "\u8BF7\u8F93\u5165\u8981\u67E5\u8BE2\u7684\u7528\u6237\u540D\u79F0", ref: "userName" }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "input-group-addon" },
+                            _react2.default.createElement("span", { className: "glyphicon glyphicon-search", onClick: this.findUser.bind(this) })
+                        )
+                    )
+                ),
                 _react2.default.createElement(
                     "div",
                     null,
@@ -32943,6 +32975,10 @@ exports.default = function () {
     if (action.type === "DELETEUSER") {
 
         return Object.assign({}, state, { deleteResult: action.deleteResult });
+    }
+    if (action.type === "FINDUSER") {
+
+        return Object.assign({}, state, { userList: action.userList });
     }
     return state;
 };

@@ -15099,8 +15099,104 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 133 */,
-/* 134 */,
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reactRedux = __webpack_require__(75);
+
+var _HandleUsers = __webpack_require__(290);
+
+var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+    return { users: state.HandleUsers };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        showUsers: function showUsers() {
+            dispatch({ type: "SHOWUSERS" });
+        },
+        addUser: function addUser(user, name, age, sex, tel, email, tip) {
+            dispatch({ type: "ADDUSER", user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
+        },
+        modifyUser: function modifyUser(id, user, name, age, sex, tel, email, tip) {
+            dispatch({ type: "MODIFYUSER", id: id, user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_HandleUsers2.default);
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _superagent = __webpack_require__(280);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (store) {
+    return function (next) {
+        return function (action) {
+            if (action.type === "SHOWUSERS") {
+                _superagent2.default.get('/getUsers').end(function (err, res) {
+                    next({ type: action.type, userList: res.body });
+                });
+            }
+
+            if (action.type === "ADDUSER") {
+                _superagent2.default.post("/addUser").send({
+                    user: action.user,
+                    name: action.name,
+                    age: action.age,
+                    sex: action.sex,
+                    tel: action.tel,
+                    email: action.email,
+                    tip: action.tip
+                }).end(function (err, res) {
+                    next({ type: action.type, addResult: res.text });
+                });
+            }
+            if (action.type === "MODIFYUSER") {
+                _superagent2.default.post("/modifyUser").send({
+                    id: action.id,
+                    user: action.user,
+                    name: action.name,
+                    age: action.age,
+                    sex: action.sex,
+                    tel: action.tel,
+                    email: action.email,
+                    tip: action.tip
+                }).end(function (err, res) {
+                    next({ type: action.type, modifyResult: res.text });
+                });
+            } else {
+                next(action);
+            }
+        };
+    };
+};
+
+/***/ }),
 /* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15113,7 +15209,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(45);
 
-var _handleUsers = __webpack_require__(296);
+var _handleUsers = __webpack_require__(292);
 
 var _handleUsers2 = _interopRequireDefault(_handleUsers);
 
@@ -32196,146 +32292,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 290 */,
-/* 291 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(8);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(130);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRedux = __webpack_require__(75);
-
-var _redux = __webpack_require__(45);
-
-var _reactRouter = __webpack_require__(131);
-
-var _App = __webpack_require__(132);
-
-var _App2 = _interopRequireDefault(_App);
-
-var _HandleUsers = __webpack_require__(293);
-
-var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
-
-var _index = __webpack_require__(135);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _handleUsers = __webpack_require__(294);
-
-var _handleUsers2 = _interopRequireDefault(_handleUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var middleware = (0, _redux.applyMiddleware)(_handleUsers2.default);
-var store = (0, _redux.createStore)(_index2.default, middleware);
-
-_reactDom2.default.render(_react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(
-        _reactRouter.Router,
-        { history: _reactRouter.hashHistory },
-        _react2.default.createElement(
-            _reactRouter.Route,
-            { path: '/', component: _App2.default },
-            _react2.default.createElement(_reactRouter.IndexRoute, { component: _HandleUsers2.default })
-        )
-    )
-), document.getElementById('app'));
-
-/***/ }),
-/* 292 */,
-/* 293 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _reactRedux = __webpack_require__(75);
-
-var _HandleUsers = __webpack_require__(295);
-
-var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-    return { users: state.HandleUsers };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        showUsers: function showUsers() {
-            dispatch({ type: "SHOWUSERS" });
-        },
-        addUser: function addUser(user, name, age, sex, tel, email, tip) {
-            dispatch({ type: "ADDUSER", user: user, name: name, age: age, sex: sex, tel: tel, email: email, tip: tip });
-        }
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_HandleUsers2.default);
-
-/***/ }),
-/* 294 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _superagent = __webpack_require__(280);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (store) {
-    return function (next) {
-        return function (action) {
-            if (action.type === "SHOWUSERS") {
-                _superagent2.default.get('/getUsers').end(function (err, res) {
-                    next({ type: action.type, userList: res.body });
-                });
-            }
-
-            if (action.type === "ADDUSER") {
-                _superagent2.default.post("/addUser").send({
-                    user: action.user,
-                    name: action.name,
-                    age: action.age,
-                    sex: action.sex,
-                    tel: action.tel,
-                    email: action.email,
-                    tip: action.tip
-                }).end(function (err, res) {
-                    next({ type: action.type, addResult: res.text });
-                });
-            } else {
-                next(action);
-            }
-        };
-    };
-};
-
-/***/ }),
-/* 295 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32391,18 +32348,54 @@ var ShowUsers = function (_React$Component) {
             }
         }
     }, {
+        key: "modify",
+        value: function modify(val) {
+            this.refs.id.value = val.id;
+            this.refs.user.value = val.user;
+            this.refs.name.value = val.name;
+            this.refs.age.value = val.age;
+            this.refs.sex.value = val.sex;
+            this.refs.tel.value = val.tel;
+            this.refs.email.value = val.email;
+            this.refs.tip.value = val.tip;
+        }
+    }, {
+        key: "modifyUser",
+        value: function modifyUser() {
+            var id = this.refs.id.value;
+            var user = this.refs.user.value;
+            var name = this.refs.name.value;
+            var age = this.refs.age.value;
+            var sex = this.refs.sex.value;
+            var tel = this.refs.tel.value;
+            var email = this.refs.email.value;
+            var tip = this.refs.tip.value;
+
+            this.props.modifyUser(id, user, name, age, sex, tel, email, tip);
+        }
+    }, {
         key: "setTag",
         value: function setTag() {
-            var data = this.props.users.addResult;
+            var addResult = this.props.users.addResult;
+            var modifyResult = this.props.users.modifyResult;
             if (this.tag) {
-                if (data === "success") {
+                if (addResult === "success") {
                     this.tag.innerHTML = "添加成功";
                     setTimeout(function () {
                         window.location.href = '/';
                     }, 1000);
                 }
-                if (data === "fail") {
+                if (addResult === "fail") {
                     this.tag.innerHTML = "添加失败，请重新添加";
+                }
+                if (modifyResult === "success") {
+                    this.tag.innerHTML = "修改成功";
+                    setTimeout(function () {
+                        window.location.href = '/';
+                    }, 1000);
+                }
+                if (modifyResult === "fail") {
+                    this.tag.innerHTML = "修改失败，请重新修改";
                 }
             }
         }
@@ -32460,7 +32453,8 @@ var ShowUsers = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             "button",
-                            { className: "btn btn-warning" },
+                            { className: "btn btn-warning", "data-toggle": "modal", "data-target": "#modifyUserModal",
+                                onClick: _this2.modify.bind(_this2, val) },
                             "\u4FEE\u6539"
                         )
                     ),
@@ -32550,8 +32544,7 @@ var ShowUsers = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "modal fade bs-example-modal-lg", id: "addUserModal", ref: "Modal", role: "dialog",
-                        "aria-hidden": "true" },
+                    { className: "modal fade bs-example-modal-lg", id: "addUserModal", role: "dialog", "aria-hidden": "true" },
                     _react2.default.createElement(
                         "div",
                         { className: "modal-dialog", role: "document" },
@@ -32687,6 +32680,141 @@ var ShowUsers = function (_React$Component) {
                             )
                         )
                     )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "modal fade bs-example-modal-lg", id: "modifyUserModal", role: "dialog", "aria-hidden": "true" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "modal-dialog", role: "document" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "modal-content" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "modal-header" },
+                                _react2.default.createElement(
+                                    "h4",
+                                    { className: "modal-title", id: "myModalLabel" },
+                                    "\u4FEE\u6539\u4EBA\u5458\u4FE1\u606F"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                null,
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u5E8F\u53F7"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "id", readOnly: "true" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u7528\u6237\u540D"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "user" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u59D3\u540D"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "name" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u5E74\u9F84"
+                                    ),
+                                    _react2.default.createElement("input", { type: "number", ref: "age" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u6027\u522B"
+                                    ),
+                                    _react2.default.createElement(
+                                        "select",
+                                        { ref: "sex" },
+                                        _react2.default.createElement(
+                                            "option",
+                                            null,
+                                            "\u5973"
+                                        ),
+                                        _react2.default.createElement(
+                                            "option",
+                                            null,
+                                            "\u7537"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u7535\u8BDD"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "tel" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u90AE\u7BB1"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "email" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "inputText" },
+                                    _react2.default.createElement(
+                                        "span",
+                                        null,
+                                        "\u5907\u6CE8"
+                                    ),
+                                    _react2.default.createElement("input", { type: "text", ref: "tip" })
+                                ),
+                                _react2.default.createElement("div", { ref: function ref(tag) {
+                                        return _this2.tag = tag;
+                                    } })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "modal-footer" },
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-danger", onClick: this.modifyUser.bind(this) },
+                                    "\u63D0\u4EA4"
+                                ),
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-default", "data-dismiss": "modal" },
+                                    "\u5173\u95ED"
+                                )
+                            )
+                        )
+                    )
                 )
             );
         }
@@ -32698,7 +32826,63 @@ var ShowUsers = function (_React$Component) {
 exports.default = ShowUsers;
 
 /***/ }),
-/* 296 */
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(130);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRedux = __webpack_require__(75);
+
+var _redux = __webpack_require__(45);
+
+var _reactRouter = __webpack_require__(131);
+
+var _App = __webpack_require__(132);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _HandleUsers = __webpack_require__(133);
+
+var _HandleUsers2 = _interopRequireDefault(_HandleUsers);
+
+var _index = __webpack_require__(135);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _handleUsers = __webpack_require__(134);
+
+var _handleUsers2 = _interopRequireDefault(_handleUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var middleware = (0, _redux.applyMiddleware)(_handleUsers2.default);
+var store = (0, _redux.createStore)(_index2.default, middleware);
+
+_reactDom2.default.render(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(
+        _reactRouter.Router,
+        { history: _reactRouter.hashHistory },
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: '/', component: _App2.default },
+            _react2.default.createElement(_reactRouter.IndexRoute, { component: _HandleUsers2.default })
+        )
+    )
+), document.getElementById('app'));
+
+/***/ }),
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32719,6 +32903,10 @@ exports.default = function () {
     if (action.type === "ADDUSER") {
 
         return Object.assign({}, state, { addResult: action.addResult });
+    }
+    if (action.type === "MODIFYUSER") {
+
+        return Object.assign({}, state, { modifyResult: action.modifyResult });
     }
     return state;
 };

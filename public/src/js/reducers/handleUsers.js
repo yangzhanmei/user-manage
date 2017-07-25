@@ -7,5 +7,9 @@ export default (state = {userList: []}, action) => {
 
         return Object.assign({}, state, {addResult: action.addResult});
     }
+    if (action.type === "MODIFYUSER") {
+
+        return Object.assign({}, state, {modifyResult: action.modifyResult});
+    }
     return state;
 }

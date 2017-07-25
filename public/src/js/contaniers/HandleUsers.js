@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         addUser: (user, name, age, sex, tel, email, tip) => {
             dispatch({type: "ADDUSER", user, name, age, sex, tel, email, tip});
+        },
+        modifyUser: (id, user, name, age, sex, tel, email, tip) => {
+            dispatch({type: "MODIFYUSER", id, user, name, age, sex, tel, email, tip});
         }
     }
 };

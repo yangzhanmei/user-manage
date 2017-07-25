@@ -4,6 +4,7 @@ const getUsers = require('./server/routers/getUsers');
 const bodyParser = require('body-parser');
 const createDatabase = require('./server/dbs/creatDatabase');
 const addUser = require('./server/routers/addUser');
+const modifyUser = require('./server/routers/modifyUser');
 
 createDatabase();
 
@@ -18,6 +19,7 @@ app.get('/', function (req, res) {
 
 app.use('/', getUsers);
 app.use('/', addUser);
+app.use('/', modifyUser);
 
 app.listen(3000, () => {
     console.log('Server started.');

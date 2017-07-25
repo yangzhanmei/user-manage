@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const getUsers = require('./server/routers/getUsers');
 const bodyParser = require('body-parser');
+const createDatabase = require('./server/dbs/creatDatabase');
+
+createDatabase();
 
 app.use(express.static(__dirname + '/public'));
 

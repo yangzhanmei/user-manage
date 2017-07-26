@@ -1,13 +1,17 @@
 function creatDatabase() {
     const connection = require('./connect');
+    const config = require('config');
 
-    connection.query(`CREATE DATABASE IF NOT EXISTS users`, (err, result) => {
+    const dbConfig = config.get('App.dbConfig');
+    const dbName = dbConfig.dbName;
+
+    connection.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`, (err, result) => {
         if (err) {
             console.log(err);
             return err;
         }
         else {
-            console.log('create database success');
+            return result;
         }
     });
 

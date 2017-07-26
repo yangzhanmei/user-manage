@@ -17,7 +17,7 @@ describe('deleteUser', () => {
             email: '15809244435@163.com',
             tip: '无'
         };
-        connection.query(`delete from users`, (err, result) => {
+        connection.query(`delete from usersTest`, (err, result) => {
             const insertQuery = `insert into users values(NULL,'${defaultUser.user}','${defaultUser.name}',${defaultUser.age},'${defaultUser.sex}','${defaultUser.tel}','${defaultUser.email}','${defaultUser.tip}')`;
             connection.query(insertQuery, function (err, result) {
                 if (err) {

@@ -1,3 +1,21 @@
-language: node_js 
+language: node_js
 node_js :
-- "6"
+  - "6"
+services:
+  - mysql
+sudo: required
+#before_script:
+#  - cp .travis.database.yml config/database.yml
+script: npm test
+
+before_install:
+    - mysql -e 'CREATE DATABASE IF NOT EXISTS usersTest;'
+    - mysql -e 'use userTest;CREATE TABLE IF NOT EXISTS users
+                         (id int(11) auto_increment primary key,
+                             user varchar(20) CHARACTER SET utf8,
+                             name varchar(20) CHARACTER SET utf8,
+                             age int(11),
+                             sex char(10) CHARACTER SET utf8,
+                             tel varchar(30),
+                             email varchar(30),
+                             tip varchar(30) CHARACTER SET utf8);'

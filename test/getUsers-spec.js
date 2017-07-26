@@ -1,4 +1,3 @@
-const mysql = require('mysql');
 const connection = require('../server/dbs/connect');
 const server = require('../server');
 const request = require('supertest');

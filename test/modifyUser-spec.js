@@ -1,10 +1,9 @@
-const mysql = require('mysql');
 const connection = require('../server/dbs/connect');
 const server = require('../server');
 const request = require('supertest');
 const should = require('chai').should();
 
-describe('getUsers', () => {
+describe('modifyUser', () => {
     let modifyUser, id;
     const modifyResult = "success";
 

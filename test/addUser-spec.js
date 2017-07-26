@@ -1,4 +1,3 @@
-const mysql = require('mysql');
 const server = require('../server');
 const request = require('supertest');
 const should = require('chai').should();

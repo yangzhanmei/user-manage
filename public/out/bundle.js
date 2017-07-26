@@ -32590,14 +32590,16 @@ var ShowUsers = function (_React$Component) {
                 if (addResult === "fail") {
                     this.tag.innerHTML = "添加失败，请重新添加";
                 }
+            }
+            if (this.modifyTag) {
                 if (modifyResult === "success") {
-                    this.tag.innerHTML = "修改成功";
+                    this.modifyTag.innerHTML = "修改成功";
                     setTimeout(function () {
                         window.location.href = '/';
                     }, 1000);
                 }
                 if (modifyResult === "fail") {
-                    this.tag.innerHTML = "修改失败，请重新修改";
+                    this.modifyTag.innerHTML = "修改失败，请重新修改";
                 }
             }
         }
@@ -32714,10 +32716,10 @@ var ShowUsers = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "col-lg-12", id: "searchAndAdd" },
+                    { id: "searchAndAdd" },
                     _react2.default.createElement(
                         "div",
-                        { className: "col-lg-5" },
+                        { id: "left" },
                         _react2.default.createElement(
                             "div",
                             { className: "input-group input-group-sm" },
@@ -32731,7 +32733,7 @@ var ShowUsers = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-lg-2 col-lg-offset-5" },
+                        { id: "right" },
                         _react2.default.createElement(
                             "button",
                             { className: "btn btn-info", "data-toggle": "modal", "data-target": "#addUserModal" },
@@ -32920,7 +32922,7 @@ var ShowUsers = function (_React$Component) {
                                             return _this2.tip = tip;
                                         }, placeholder: "\u8BF7\u8F93\u5165\u5907\u6CE8" })
                                 ),
-                                _react2.default.createElement("div", { ref: function ref(tag) {
+                                _react2.default.createElement("div", { className: "tag", ref: function ref(tag) {
                                         return _this2.tag = tag;
                                     } })
                             ),
@@ -33055,8 +33057,8 @@ var ShowUsers = function (_React$Component) {
                                     ),
                                     _react2.default.createElement("input", { type: "text", ref: "tip" })
                                 ),
-                                _react2.default.createElement("div", { ref: function ref(tag) {
-                                        return _this2.tag = tag;
+                                _react2.default.createElement("div", { className: "tag", ref: function ref(modifyTag) {
+                                        return _this2.modifyTag = modifyTag;
                                     } })
                             ),
                             _react2.default.createElement(
@@ -33188,7 +33190,7 @@ exports = module.exports = __webpack_require__(137)(undefined);
 
 
 // module
-exports.push([module.i, "#contanier {\n    margin-left: 15%;\n    margin-right: 15%;\n    margin-top: 30px;\n}\n\n#header {\n    text-align: center;\n}\n\n#searchAndAdd {\n    margin-top: 30px;\n    margin-bottom: 30px;\n}\n\n.inputText {\n    text-align: center;\n    margin-bottom: 20px;\n}\n\n.inputSpan {\n    margin-right: 20px;\n}\n\n.modalInput {\n    margin-top: 30px;\n    margin-bottom: 30px;\n}\n\n.modal-footer {\n    text-align: center;\n}\n\n.select {\n    background-color: white;\n    height: 25px;\n    width: 155px;\n}", ""]);
+exports.push([module.i, "#contanier {\n    margin-left: 15%;\n    margin-right: 15%;\n    margin-top: 30px;\n}\n\n#header {\n    text-align: center;\n}\n\n#searchAndAdd {\n    margin-top: 30px;\n    margin-bottom: 30px;\n}\n\n.inputText {\n    text-align: center;\n    margin-bottom: 20px;\n}\n\n.inputSpan {\n    margin-right: 20px;\n}\n\n.modalInput {\n    margin-top: 30px;\n    margin-bottom: 30px;\n}\n\n.modal-footer {\n    text-align: center;\n}\n\n.select {\n    background-color: white;\n    height: 25px;\n    width: 155px;\n}\n\n.tag {\n    margin-left: 80%;\n}\n\n#left {\n    display: inline-block;\n    width: 300px;\n}\n\n#right {\n    display: inline-block;\n    margin-left: 50%;\n}", ""]);
 
 // exports
 

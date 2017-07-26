@@ -36,3 +36,17 @@
     height: 25px;
     width: 155px;
 }
+
+.tag {
+    margin-left: 80%;
+}
+
+#left {
+    display: inline-block;
+    width: 300px;
+}
+
+#right {
+    display: inline-block;
+    margin-left: 50%;
+}

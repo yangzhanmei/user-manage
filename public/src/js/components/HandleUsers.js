@@ -61,14 +61,16 @@ export default class ShowUsers extends React.Component {
             if (addResult === "fail") {
                 this.tag.innerHTML = "添加失败，请重新添加";
             }
+        }
+        if (this.modifyTag) {
             if (modifyResult === "success") {
-                this.tag.innerHTML = "修改成功";
+                this.modifyTag.innerHTML = "修改成功";
                 setTimeout(function () {
                     window.location.href = '/';
                 }, 1000);
             }
             if (modifyResult === "fail") {
-                this.tag.innerHTML = "修改失败，请重新修改";
+                this.modifyTag.innerHTML = "修改失败，请重新修改";
             }
         }
     }
@@ -124,16 +126,16 @@ export default class ShowUsers extends React.Component {
                 <div id="header">
                     <h3>人员管理</h3>
                 </div>
-                <div className="col-lg-12" id="searchAndAdd">
-                    <div className="col-lg-5">
+                <div id="searchAndAdd">
+                    <div id="left">
                         <div className="input-group input-group-sm">
                             <input type="text" className="form-control" placeholder="请输入要查询的用户名称" ref="userName"/>
                             <span className="input-group-addon">
-                            <span className="glyphicon glyphicon-search" onClick={this.findUser.bind(this)}></span>
-                        </span>
+                              <span className="glyphicon glyphicon-search" onClick={this.findUser.bind(this)}></span>
+                            </span>
                         </div>
                     </div>
-                    <div className="col-lg-2 col-lg-offset-5">
+                    <div id="right">
                         <button className="btn btn-info" data-toggle="modal" data-target="#addUserModal">增加用户</button>
                     </div>
                 </div>
@@ -196,7 +198,7 @@ export default class ShowUsers extends React.Component {
                                     <span className="inputSpan">备注</span>
                                     <input type="text" ref={(tip) => this.tip = tip} placeholder="请输入备注"/>
                                 </div>
-                                <div ref={(tag) => this.tag = tag}></div>
+                                <div className="tag" ref={(tag) => this.tag = tag}></div>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-danger" onClick={this.submitUser.bind(this)}>
@@ -250,7 +252,7 @@ export default class ShowUsers extends React.Component {
                                     <span className="inputSpan">备注</span>
                                     <input type="text" ref="tip"/>
                                 </div>
-                                <div ref={(tag) => this.tag = tag}></div>
+                                <div className="tag" ref={(modifyTag) => this.modifyTag = modifyTag}></div>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-danger" onClick={this.modifyUser.bind(this)}>
